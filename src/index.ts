@@ -56,3 +56,16 @@ export function minLength(value: any[] | string, minLength: number): boolean {
 export function maxLength(value: any[] | string, maxLength: number): boolean {
   return isNotEmpty(value) && value.length <= maxLength;
 }
+
+export function isValid<T extends { [key: string]: any }>(
+    testSubject: T,
+    validators: {[K in keyof Partial<T>]: Function[]},
+): boolean {
+  const result = validate(testSubject, validators);
+  const testedProperties = Object.keys(validators);
+  const passingTests = testedProperties
+      .map(property => result[property])
+      .filter(isPassingTest => !!isPassingTest);
+
+  return passingTests.length === testedProperties.length;
+}

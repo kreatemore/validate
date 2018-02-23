@@ -3,6 +3,7 @@ import {
   isNotNull,
   isNotUndefined,
   isRequired,
+  isValid,
   maxLength,
   minLength,
   validate,
@@ -297,6 +298,40 @@ describe('maxLength', () => {
     );
     expect(result.name).toBeTruthy();
     expect(result.capabilities).toBeTruthy();
+  });
+});
+
+describe('isValid', () => {
+  it('should fail if any of the values are false', () => {
+    const result = isValid<User>(
+        {
+          name: 'capabilities',
+          capabilities: [],
+          attributes: {handsome: 'very'},
+        },
+        {
+          name: [isNotEmpty],
+          capabilities: [isNotEmpty],
+          attributes: [isNotEmpty],
+        },
+    );
+    expect(result).toBeFalsy();
+  });
+
+  it('should pass if all the values are true', () => {
+    const result = isValid<User>(
+        {
+          name: 'capabilities',
+          capabilities: ['element'],
+          attributes: {handsome: 'very'},
+        },
+        {
+          name: [isNotEmpty],
+          capabilities: [isNotEmpty],
+          attributes: [isNotEmpty],
+        },
+    );
+    expect(result).toBeTruthy();
   });
 });
 

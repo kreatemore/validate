@@ -53,6 +53,13 @@ const validationRules = {fullName: [isNotUndefined]}
   * Usage: `{propertyName: [value => maxLength(value, 5)]}`
 * `isNotEmpty`
   * Checks if the string, array, or Object.keys()'s length is truthy
+
+## Usage
+
+* `validate<T>(object, validators)`
+  * Will return the same structure, with `true/false` to indicate if a test is passing
+* `isValid<T>(object, validators)`
+  * Will return a single `true/false` signaling the combined status of **all** tests
   
 ## Custom rules :nail_care:
 
