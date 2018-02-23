@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "max-line-length": {
+      "options": [
+        80
+      ]
+    },
+    "no-bitwise": true,
+    "no-consecutive-blank-lines": true,
+    "no-boolean-literal-compare": true,
+    "newline-before-return": true,
+    "no-duplicate-imports": true,
+    "no-duplicate-variable": true,
+    "no-empty": true,
+    "no-eval": true,
+    "no-unnecessary-type-assertion": true,
+    "no-var-keyword": true,
+    "no-trailing-whitespace": [true],
+    "no-console": {
+      "options": [
+        "debug",
+        "info",
+        "log",
+        "time",
+        "timeEnd",
+        "trace"
+      ]
+    }
+  }
+}
