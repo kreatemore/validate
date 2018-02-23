@@ -57,9 +57,10 @@ const validationRules = {fullName: [isNotUndefined]}
 ## Usage
 
 * `validate<T>(object, validators)`
-  * Will return the same structure, with `true/false` to indicate if a test is passing
+  * Will return the same structure as `Partial<T>` (that are the fields to be validated), 
+  with a single `boolean` for each test to indicate if it is passing
 * `isValid<T>(object, validators)`
-  * Will return a single `true/false` signaling the combined status of **all** tests
+  * Will return a single `boolean` (using `validate()` under the hood) signaling the combined status of **all** tests
   
 ## Custom rules :nail_care:
 
