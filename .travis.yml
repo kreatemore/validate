@@ -31,4 +31,5 @@ script:
   - yarn jest --runInBand --coverage
 
 after_script:
+  - ./cc-test-reporter -i coverage/coverage-final.json
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
