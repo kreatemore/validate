@@ -33,8 +33,9 @@ results -> {name: true, capabilities: false, attributes: true}
 const user = {name: 'Maximus'};
 const validationRules = {fullName: [isNotUndefined]}
 
-                         ^^^^^
-                         'fullName' doesn't exist on type
+validate<User>(user, validationRules);
+                     ^^^^^
+                     'fullName' doesn't exist on type User
 ```
 
 ## Available validation methods
@@ -56,10 +57,10 @@ const validationRules = {fullName: [isNotUndefined]}
 
 ## Usage
 
-* `validate<T>(object, validators)`
+* `validate<T>(unitUnderTest: T, validators: {[K in keyof Partial<T>]: Function[]}): {[K in keyof Partial<T>]: boolean}`
   * Will return the same structure as `Partial<T>` (that are the fields to be validated), 
   with a single `boolean` for each test to indicate if it is passing
-* `isValid<T>(object, validators)`
+* `isValid<T>(unitUnderTest: T, validators: {[K in keyof Partial<T>]: Function[]}): boolean`
   * Will return a single `boolean` (using `validate()` under the hood) signaling the combined status of **all** tests
   
 ## Custom rules :nail_care:
@@ -68,7 +69,9 @@ Providing custom validator functions are as easy as :1234:
 
 ```
 const user = {name: 'Maximus'};
-const validationRules = {name: [name => name === 'Maximus', name => name !== 'Minimus']}
+const validationRules = {name: [name => name === 'Maximus', name => console.log(name)]};
+
+const isValid = isValid<User>(user, validationRules);
 ```
 
 The custom validator functions should return a boolean, to be usable for validation. If the function is void, it'll return `true` as in "I found this test to be passing :thinking:".
