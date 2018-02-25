@@ -31,4 +31,4 @@ script:
   - yarn jest --runInBand --coverage
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t clover -d
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t lcov -d
