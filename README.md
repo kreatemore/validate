@@ -1,6 +1,8 @@
 # validate :white_check_mark:
 Utility to valide objects in TypeScript
 
+[![Build Status](https://travis-ci.org/kreatemore/validate.svg?branch=master)](https://travis-ci.org/kreatemore/validate)
+
 ## Example
 
 ### Validating an object
