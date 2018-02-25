@@ -2,6 +2,8 @@
 Utility to valide objects in TypeScript
 
 [![Build Status](https://travis-ci.org/kreatemore/validate.svg?branch=master)](https://travis-ci.org/kreatemore/validate)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e41d8d3fb0825934ca02/maintainability)](https://codeclimate.com/github/kreatemore/validate/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e41d8d3fb0825934ca02/test_coverage)](https://codeclimate.com/github/kreatemore/validate/test_coverage)
 
 ## Example
 
