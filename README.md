@@ -34,7 +34,7 @@ const user = {name: 'Maximus'};
 const validationRules = {fullName: [isNotUndefined]}
 
 validate<User>(user, validationRules);
-                     ^^^^^
+                     ^^^^^^^^^^^^^^^
                      'fullName' doesn't exist on type User
 ```
 
