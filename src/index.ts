@@ -47,7 +47,7 @@ export function isNotEmpty(value: any[] | string | object): boolean {
 
   if (value instanceof Object && value.constructor === Object) {
     isNotEmpty = !!Object.keys(value).length;
-  } else {
+  } else if (isTruthy(value)) {
     isNotEmpty = !!(value as any[] | string).length;
   }
 
@@ -58,12 +58,16 @@ export function isNotUndefined(value: any | undefined): boolean {
   return typeof value !== 'undefined';
 }
 
-export function isRequired(value: any | null | undefined): boolean {
+export function isTruthy(value: any | null | undefined): boolean {
   return !!value;
 }
 
+export function isRequired(value: any | null | undefined): boolean {
+  return isTruthy(value);
+}
+
 function getLength(value: any[] | string): number {
-  return isNotEmpty(value) && value.length;
+  return isNotEmpty(value) ? value.length : NaN;
 }
 
 export function minLength(value: any[] | string, minLength: number): boolean {
@@ -81,10 +85,11 @@ export function isEnumSubset(
   const acceptableValues = Object.keys(enumerable)
       .map(key => enumerable[key]);
   const actualValues = Array.isArray(values) ? values : [values];
+  const noValuesOutsideOfEnum = 0;
 
   return actualValues.map(value => acceptableValues.indexOf(value) > -1)
       .filter(result => !result)
-      .length === 0;
+      .length === noValuesOutsideOfEnum;
 }
 
 type EnumWithStringKeys = { [id: string]: string };

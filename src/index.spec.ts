@@ -1,10 +1,10 @@
 import {
+  isEnumSubset,
   isNotEmpty,
   isNotNull,
   isNotUndefined,
   isRequired,
   isValid,
-  isEnumSubset,
   maxLength,
   minLength,
   validate,
@@ -251,6 +251,14 @@ describe('minLength', () => {
     expect(result.name).toBeFalsy();
   });
 
+  it('should fail if string is empty', () => {
+    const result = validate<User>(
+        {name: undefined},
+        {name: [name => minLength(name, 20)]},
+    );
+    expect(result.name).toBeFalsy();
+  });
+
   it('should fail if array has less items than minimum length', () => {
     const result = validate<User>(
         {name: 'Shawty', capabilities: ['user', 'admin']},
@@ -277,6 +285,14 @@ describe('maxLength', () => {
     const result = validate<User>(
         {name: 'Shawty'},
         {name: [name => maxLength(name, 5)]},
+    );
+    expect(result.name).toBeFalsy();
+  });
+
+  it('should fail if string is empty', () => {
+    const result = validate<User>(
+        {name: undefined},
+        {name: [name => maxLength(name, 20)]},
     );
     expect(result.name).toBeFalsy();
   });
