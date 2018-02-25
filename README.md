@@ -84,10 +84,8 @@ The custom validator functions should return a boolean, to be usable for validat
 
 ## Contributions
 
-Feel free to open a PR with a brief description about the changes.
-
+Feel free to open a PR with a brief description about the changes.<br>
 Don't forget to cover your changes with (passing) tests! 
 
-To install, clone the repo & `yarn install`.
-
+To install, clone the repo & `yarn install`.<br>
 To run tests, you can just simply type `yarn jest` in your terminal.
