@@ -27,6 +27,7 @@
     ],
     "coverageReporters": [
       "clover"
-    ]
+    ],
+    "coverageDirectory": "."
   }
 }
