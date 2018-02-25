@@ -62,12 +62,16 @@ export function isRequired(value: any | null | undefined): boolean {
   return !!value;
 }
 
+function getLength(value: any[] | string): number {
+  return isNotEmpty(value) && value.length;
+}
+
 export function minLength(value: any[] | string, minLength: number): boolean {
-  return isNotEmpty(value) && value.length >= minLength;
+  return getLength(value) >= minLength;
 }
 
 export function maxLength(value: any[] | string, maxLength: number): boolean {
-  return isNotEmpty(value) && value.length <= maxLength;
+  return getLength(value) <= maxLength;
 }
 
 export function isEnumSubset(
