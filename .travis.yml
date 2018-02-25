@@ -2,6 +2,10 @@ language: node_js
 
 node_js:
   - "8"
+scripts
+  - npm install codecov -g
+after_success:
+  - codecov
 
 sudo: false
 
@@ -19,4 +23,4 @@ cache:
     - "node_modules"
 
 script:
-  - yarn jest
+  - yarn jest --runInBand --coverage

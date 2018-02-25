@@ -24,6 +24,9 @@
       "jsx",
       "json",
       "node"
+    ],
+    "coverageReporters": [
+      "json"
     ]
   }
 }
