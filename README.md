@@ -22,9 +22,8 @@ const validationRules = {
           attributes: [isNotEmpty],
         };
 
-const results = validate<User>(user, validationRules);
-
-results -> {name: true, capabilities: false, attributes: true}
+const results = validate<User>(user, validationRules); // {name: true, capabilities: false, attributes: true}
+const isValid = isValid<User>(user, validationRules); // false
 ```
 
 ### Checks if validation rules are conforming to the interface :policeman:
@@ -79,7 +78,9 @@ The custom validator functions should return a boolean, to be usable for validat
 ## Contributions
 
 Feel free to open a PR with a brief description about the changes.
+
 Don't forget to cover your changes with (passing) tests! 
 
 To install, clone the repo & `yarn install`.
+
 To run tests, you can just simply type `yarn jest` in your terminal.
