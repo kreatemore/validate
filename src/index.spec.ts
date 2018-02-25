@@ -4,6 +4,7 @@ import {
   isNotUndefined,
   isRequired,
   isValid,
+  isEnumSubset,
   maxLength,
   minLength,
   validate,
@@ -329,6 +330,58 @@ describe('isValid', () => {
           name: [isNotEmpty],
           capabilities: [isNotEmpty],
           attributes: [isNotEmpty],
+        },
+    );
+    expect(result).toBeTruthy();
+  });
+});
+
+describe('isEnumSubset', () => {
+  enum EXPECTED_CAPABILITIES {
+    ADMIN = 'admin',
+  }
+
+  it('should fail if it is not one of the expectations', () => {
+    const result = isValid<User>(
+        {
+          name: 'Cranberry Zombie',
+          capabilities: ['blogger'],
+        },
+        {
+          capabilities: [
+            capability => isEnumSubset(
+                capability,
+                EXPECTED_CAPABILITIES,
+            ),
+          ],
+        },
+    );
+    expect(result).toBeFalsy();
+  });
+
+  it('should pass if iterable is a part of the expectation', () => {
+    const result = isValid<User>(
+        {
+          name: 'Cranberry Zombie',
+          capabilities: [EXPECTED_CAPABILITIES.ADMIN],
+        },
+        {
+          capabilities: [
+            capability => isEnumSubset(
+                capability,
+                EXPECTED_CAPABILITIES,
+            ),
+          ],
+        },
+    );
+    expect(result).toBeTruthy();
+  });
+
+  it('should pass if single value is a part of the expectation', () => {
+    const result = isValid<User>(
+        {name: EXPECTED_CAPABILITIES.ADMIN},
+        {
+          name: [name => isEnumSubset(name, EXPECTED_CAPABILITIES)],
         },
     );
     expect(result).toBeTruthy();

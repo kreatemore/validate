@@ -55,6 +55,9 @@ validate<User>(user, validationRules);
   * Usage: `{propertyName: [value => maxLength(value, 5)]}`
 * `isNotEmpty`
   * Checks if the string, array, or Object.keys()'s length is truthy
+* `isEnumSubset`
+  * Checks if the values inside an array are (or a single value is) valid values for a given Enum
+  * Usage: `{propertyName: [value => isValidForEnum(value, EnumType)]`
 
 ## Usage
 

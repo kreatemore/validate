@@ -1,3 +1,16 @@
+export function isValid<T extends { [key: string]: any }>(
+    testSubject: T,
+    validators: {[K in keyof Partial<T>]: Function[]},
+): boolean {
+  const result = validate(testSubject, validators);
+  const testedProperties = Object.keys(validators);
+  const passingTests = testedProperties
+      .map(property => result[property])
+      .filter(isPassingTest => !!isPassingTest);
+
+  return passingTests.length === testedProperties.length;
+}
+
 export function validate<T extends { [key: string]: any }>(
     testSubject: T,
     validators: {[K in keyof Partial<T>]: Function[]},
@@ -57,15 +70,18 @@ export function maxLength(value: any[] | string, maxLength: number): boolean {
   return isNotEmpty(value) && value.length <= maxLength;
 }
 
-export function isValid<T extends { [key: string]: any }>(
-    testSubject: T,
-    validators: {[K in keyof Partial<T>]: Function[]},
+export function isEnumSubset(
+    values: string | string[],
+    enumerable: EnumWithNumericKeys | EnumWithStringKeys,
 ): boolean {
-  const result = validate(testSubject, validators);
-  const testedProperties = Object.keys(validators);
-  const passingTests = testedProperties
-      .map(property => result[property])
-      .filter(isPassingTest => !!isPassingTest);
+  const acceptableValues = Object.keys(enumerable)
+      .map(key => enumerable[key]);
+  const actualValues = Array.isArray(values) ? values : [values];
 
-  return passingTests.length === testedProperties.length;
+  return actualValues.map(value => acceptableValues.indexOf(value) > -1)
+      .filter(result => !result)
+      .length === 0;
 }
+
+type EnumWithStringKeys = { [id: string]: string };
+type EnumWithNumericKeys = { [id: number]: string };
