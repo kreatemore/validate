@@ -21,10 +21,10 @@ interface User {
 const user = {name: 'Maximus', capabilities: [], attributes: {handsome: 'very'}};
 
 const validationRules = {
-          name: [isNotEmpty, name => minLength(name, 3)],
-          capabilities: [isNotEmpty],
-          attributes: [isNotEmpty],
-        };
+  name: [isNotEmpty, name => minLength(name, 3)],
+  capabilities: [isNotEmpty],
+  attributes: [isNotEmpty],
+};
 
 const results = validate<User>(user, validationRules); // {name: true, capabilities: false, attributes: true}
 const isValid = isValid<User>(user, validationRules); // false
@@ -77,7 +77,7 @@ Providing custom validator functions are as easy as :1234:
 const user = {name: 'Maximus'};
 const validationRules = {name: [name => name === 'Maximus', name => console.log(name)]};
 
-const isValid = isValid<User>(user, validationRules);
+const isValid = isValid<User>(user, validationRules); // true
 ```
 
 The custom validator functions should return a boolean, to be usable for validation. If the function is void, it'll return `true` as in "I found this test to be passing :thinking:".
