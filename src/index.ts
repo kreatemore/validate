@@ -32,7 +32,7 @@ export function validate<T extends { [key: string]: any }>(
       isValid = isTestFunctionVoid ? isValid : result;
     }
 
-    results[property] = isValid;
+    results[property as keyof Partial<T>] = isValid;
   });
 
   return results;

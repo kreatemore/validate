@@ -5,12 +5,14 @@
   "main": "index.js",
   "author": "Alex Szabó",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
-    "@types/jasmine": "^2.8.6",
-    "jest": "^22.4.2",
-    "ts-jest": "^22.0.4",
+    "@types/jest": "^24.0.19",
+    "ts-jest": "^24.1.0",
     "tslint": "^5.9.1",
-    "typescript": "^2.7.2"
+    "typescript": "^3.6.4"
   },
   "jest": {
     "transform": {
@@ -28,5 +30,8 @@
     "coverageReporters": [
       "lcov"
     ]
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
